@@ -113,7 +113,7 @@ ENTRYPOINT ["protoc", "-I.", \
     # googleapis proto files
     "-Igithub.com/googleapis/googleapis", \
     # required import paths for protoc-gen-gorm plugin
-    "-Igithub.com/infobloxopen/protoc-gen-gorm", \
+    "-Igithub.com/TvdBrink/protoc-gen-gorm", \
     # required import paths for protoc-gen-atlas-query-validate plugin
     "-Igithub.com/infobloxopen/protoc-gen-atlas-query-validate", \
     # required import paths for protoc-gen-preprocess plugin
