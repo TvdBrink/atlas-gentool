@@ -63,9 +63,12 @@ RUN go install github.com/lyft/protoc-gen-validate
 RUN go install github.com/mwitkow/go-proto-validators/protoc-gen-govalidators
 RUN go install github.com/pseudomuto/protoc-gen-doc/cmd/...
 RUN go install github.com/infobloxopen/protoc-gen-preprocess
-RUN go install  \
-      -ldflags "-X github.com/infobloxopen/protoc-gen-gorm/plugin.ProtocGenGormVersion=$PGG_VERSION -X github.com/infobloxopen/protoc-gen-gorm/plugin.AtlasAppToolkitVersion=$AAT_VERSION" \
-      github.com/infobloxopen/protoc-gen-gorm
+# RUN go install  \
+#       -ldflags "-X github.com/infobloxopen/protoc-gen-gorm/plugin.ProtocGenGormVersion=$PGG_VERSION -X github.com/infobloxopen/protoc-gen-gorm/plugin.AtlasAppToolkitVersion=$AAT_VERSION" \
+#       github.com/infobloxopen/protoc-gen-gorm
+RUN go install \
+        -ldflags "-X github.com/TvdBrink/protoc-gen-gorm/plugin.ProtocGenGormVersion=$PGG_VERSION -X github.com/TvdBrink/protoc-gen-gorm/plugin.AtlasAppToolkitVersion=$AAT_VERSION" \
+        github.com/TvdBrink/protoc-gen-gorm
 # Download all dependencies of protoc-gen-atlas-query-validate
 RUN cd ${GOPATH}/src/github.com/infobloxopen/protoc-gen-atlas-query-validate && dep ensure -vendor-only
 RUN go install github.com/infobloxopen/protoc-gen-atlas-query-validate
