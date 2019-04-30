@@ -1,6 +1,6 @@
 # Utility docker image to generate Go files from .proto definition.
-# https://github.com/infobloxopen/atlas-gentool
-IMAGE_NAME := infoblox/atlas-gentool
+# https://github.com/TvdBrink/atlas-gentool
+IMAGE_NAME := tvdbrink/atlas-gentool
 
 GO_PATH              	:= /go
 SRCROOT_ON_HOST      	:= $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -44,7 +44,7 @@ test: test-gen test-check test-clean
 
 test-gen:
 	docker run --rm -v $(SRCROOT_ON_HOST):$(SRCROOT_IN_CONTAINER) \
-	 infoblox/atlas-gentool:latest \
+	 TvdBrink/atlas-gentool:latest \
 	--go_out=plugins=grpc:. \
 	--grpc-gateway_out=logtostderr=true:. \
 	--validate_out="lang=go:." \
@@ -52,7 +52,7 @@ test-gen:
 	--atlas-query-validate_out=. \
 	--atlas-validate_out=. \
 	--preprocess_out=. \
-	--swagger_out=:. github.com/infobloxopen/atlas-gentool/testdata/test.proto
+	--swagger_out=:. github.com/TvdBrink/atlas-gentool/testdata/test.proto
 
 test-check:
 	test -e testdata/test.pb.go
